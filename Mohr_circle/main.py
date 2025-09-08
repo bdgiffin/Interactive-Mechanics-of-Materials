@@ -79,9 +79,9 @@ async def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if ((event.type == pygame.MOUSEBUTTONDOWN) or (event.type == pygame.FINGERDOWN)):
                 mouse_pressed = True
-            if event.type == pygame.MOUSEBUTTONUP:
+            if ((event.type == pygame.MOUSEBUTTONUP) or (event.type == pygame.FINGERUP)):
                 mouse_pressed = False
 
         if mouse_pressed:
