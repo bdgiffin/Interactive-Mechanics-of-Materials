@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=f2a433a1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -73,8 +74,31 @@
              
   <section id="mohr-s-circle">
 <h1>Mohr’s circle<a class="headerlink" href="#mohr-s-circle" title="Link to this heading"></a></h1>
-<p>An interactive stress transformation demo with Mohr’s circle.</p>
-<iframe src="_static/mohr_circle/index.html" style="width:100%; height:100%; aspect-ratio: 16/8;" scrolling="no" frameborder="0"></iframe></section>
+<p>Mohr’s circle offers an intuitive way to visualize states of stress and stress transformations. The following interactive demonstration is intended to enhance one’s understanding of Mohr’s circle. Click on the example below to get started.</p>
+<iframe src="_static/mohr_circle/index.html" style="width:100%; height:100%; aspect-ratio: 16/8;" scrolling="no" frameborder="0"></iframe><p>The example above considers a block subjected to a two-dimensional state of stress, illustrated on the right side of the screen. The different components of normal and shear stress (<span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\(\sigma_y\)</span>, <span class="math notranslate nohighlight">\(\tau_{xy} = \tau_{yx}\)</span>) acting on the grey block whose edges are aligned with the <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span> coordinate axes can be adjusted using the three sliders in the top left corner of the screen. The orientation of the blue block whose edges are aligned with the <span class="math notranslate nohighlight">\(x'\)</span>-<span class="math notranslate nohighlight">\(y'\)</span> axes can be adjusted by clicking on the blue block and rotating it. The components of normal and shear stress acting on the blue block (<span class="math notranslate nohighlight">\(\sigma_{x'}\)</span>, <span class="math notranslate nohighlight">\(\sigma_{y'}\)</span>, <span class="math notranslate nohighlight">\(\tau_{x'y'} = \tau_{y'x'}\)</span>) are determined according to the stress transformation equations:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{x'} = \frac{\sigma_x + \sigma_y}{2} + \frac{\sigma_x - \sigma_y}{2} \cos (2 \theta) + \tau_{xy} \sin (2 \theta)\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_{y'} = \frac{\sigma_x + \sigma_y}{2} - \frac{\sigma_x - \sigma_y}{2} \cos (2 \theta) - \tau_{xy} \sin (2 \theta)\]</div>
+<div class="math notranslate nohighlight">
+\[\tau_{x'y'} = - \frac{\sigma_x - \sigma_y}{2} \sin (2 \theta) + \tau_{xy} \cos (2 \theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> measures the angle between the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span> coordinate axes. Try rotating the blue block to see how the state of stress in the <span class="math notranslate nohighlight">\(x'\)</span>-<span class="math notranslate nohighlight">\(y'\)</span> coordinate frame changes.</p>
+<p>Mohr’s circle is displayed on the left side of the screen, illustrating the aforementioned states of stress in a two-dimensional diagram, with normal stress <span class="math notranslate nohighlight">\(\sigma\)</span> measured on the horizontal axis and shear stress <span class="math notranslate nohighlight">\(\tau\)</span> measured on the vertical axis. The red and blue dots respectively represent the states of stress corresponding to <span class="math notranslate nohighlight">\((\sigma_x,\tau_{xy})\)</span> and <span class="math notranslate nohighlight">\((\sigma_y,-\tau_{yx})\)</span>, whereas the magenta and purple dots represent the transformed states of stress corresponding to <span class="math notranslate nohighlight">\((\sigma_{x'},\tau_{x'y'})\)</span> and <span class="math notranslate nohighlight">\((\sigma_{y'},-\tau_{y'x'})\)</span>, respectively. The center of Mohr’s circle is positioned along the <span class="math notranslate nohighlight">\(\sigma\)</span> axis, and corresponds to the “average” normal stress:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\text{avg}} = \frac{\sigma_x + \sigma_y}{2}\]</div>
+<p>Additionally, the radius of Mohr’s circle can be determined by the Pythagorean theorem:</p>
+<div class="math notranslate nohighlight">
+\[R = \sqrt{\left( \frac{\sigma_x - \sigma_y}{2} \right)^2 + \left( \tau_{xy} \right)^2}\]</div>
+<p>Moreover, <span class="math notranslate nohighlight">\(R\)</span> represents the magnitude of the maximum in-plane shear stress <span class="math notranslate nohighlight">\(\tau_{\text{max in-plane}}\)</span> among all possible rotation angles <span class="math notranslate nohighlight">\(\theta \in [-180^{\circ},+180^{\circ}]\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the blue block is rotated by an angle of <span class="math notranslate nohighlight">\(\theta\)</span>, then the angle measured between <span class="math notranslate nohighlight">\((\sigma_x,\tau_{xy})\)</span> and <span class="math notranslate nohighlight">\((\sigma_{x'},\tau_{x'y'})\)</span> on Mohr’s circle will be <span class="math notranslate nohighlight">\(2 \theta\)</span> (<em>twice</em> the rotation angle).</p>
+</div>
+<p>For any state of stress characterized by <span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\(\sigma_y\)</span>, and <span class="math notranslate nohighlight">\(\tau_{xy}\)</span>, it is always possible to find a particular rotation angle <span class="math notranslate nohighlight">\(\theta_p\)</span> for which <span class="math notranslate nohighlight">\(\sigma_{x'}\)</span>, <span class="math notranslate nohighlight">\(\sigma_{y'}\)</span> correspond to the principal stresses <span class="math notranslate nohighlight">\(\sigma_{1,2} = \sigma_{\text{avg}} \pm R\)</span>. In particular:</p>
+<div class="math notranslate nohighlight">
+\[\tan (2 \theta_p) = \frac{\tau_{xy}}{(\sigma_x - \sigma_y)/2}\]</div>
+<p>Try to prove this to yourself by changing the values of <span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\(\sigma_y\)</span>, <span class="math notranslate nohighlight">\(\tau_{xy}\)</span> and attempting to find the value of <span class="math notranslate nohighlight">\(\theta_p\)</span> for which <span class="math notranslate nohighlight">\(\tau_{x'y'} = 0\)</span>, and notice how the plotted points for <span class="math notranslate nohighlight">\(\sigma_{x'}\)</span>, <span class="math notranslate nohighlight">\(\sigma_{y'}\)</span> in Mohr’s circle appear on the normal stress axis.</p>
+</section>
 
 
            </div>
