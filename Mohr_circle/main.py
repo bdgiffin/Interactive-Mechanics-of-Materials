@@ -7,17 +7,18 @@ import pygame_widgets
 from pygame_widgets.slider  import Slider
 
 pygame.init()
-window_width  = 1600
-window_height = 800
+scale = 2
+window_width  = scale*1600
+window_height = scale*800
 window = pygame.display.set_mode((window_width,window_height))
 
 # Create a slider
 Nsteps = 50
-sxx_slider = Slider(window,210, 20, 440, 15,
+sxx_slider = Slider(window,scale*210, scale*20, scale*440, 15,
                     min=0, max=2*Nsteps, step=1, initial=int(Nsteps+0.7*Nsteps))
-syy_slider = Slider(window,210, 50, 440, 15,
+syy_slider = Slider(window,scale*210, scale*50, scale*440, 15,
                     min=0, max=2*Nsteps, step=1, initial=int(Nsteps-0.4*Nsteps))
-sxy_slider = Slider(window,210, 80, 440, 15,
+sxy_slider = Slider(window,scale*210, scale*80, scale*440, 15,
                     min=0, max=2*Nsteps, step=1, initial=int(Nsteps+0.9*Nsteps))
 
 async def main():
@@ -25,7 +26,7 @@ async def main():
     # Initialize a new font for drawing text
     pygame.font.init()
     font_type  = 'None'
-    font_size  = 30 # (pixels)
+    font_size  = scale*30 # (pixels)
     stress_font = pygame.font.SysFont(font_type, font_size)
 
     # Create rendered text with the title of the game
@@ -180,86 +181,86 @@ async def main():
         pygame.draw.polygon(window, "Light Steel Blue", inner_block)
 
         # Draw axes
-        axis_width = 4
-        axis_size  = 12
-        draw_arrow(block_center,x_axis,axis_width,axis_size,"Dark Grey","x ",label_offset=25)
-        draw_arrow(block_center,y_axis,axis_width,axis_size,"Dark Grey","y ",label_offset=25)
-        draw_arrow(block_center,xprime_axis,axis_width,axis_size,"Steel Blue","x'",label_offset=25)
-        draw_arrow(block_center,yprime_axis,axis_width,axis_size,"Steel Blue","y'",label_offset=25)
+        axis_width = scale*4
+        axis_size  = scale*12
+        draw_arrow(block_center,x_axis,axis_width,axis_size,"Dark Grey","x ",label_offset=scale*25)
+        draw_arrow(block_center,y_axis,axis_width,axis_size,"Dark Grey","y ",label_offset=scale*25)
+        draw_arrow(block_center,xprime_axis,axis_width,axis_size,"Steel Blue","x'",label_offset=scale*25)
+        draw_arrow(block_center,yprime_axis,axis_width,axis_size,"Steel Blue","y'",label_offset=scale*25)
 
         # Draw angle
         theta_arc = -theta
         if (theta_arc < 0):
-            draw_arc((block_center[0], block_center[1]),0.1*inner_block_size,-theta_arc,theta_arc,True,"Black",label_offset=20)
+            draw_arc((block_center[0], block_center[1]),0.1*inner_block_size,-theta_arc,theta_arc,True,"Black",label_offset=scale*20)
         else:
-            draw_arc((block_center[0], block_center[1]),0.1*inner_block_size,0,-theta_arc,False,"Black",label_offset=20)
+            draw_arc((block_center[0], block_center[1]),0.1*inner_block_size,0,-theta_arc,False,"Black",label_offset=scale*20)
 
         # Draw stresses on outer block
-        stress_offset = 10+outer_block_size
-        stress_width = 8
-        stress_size  = 24
-        draw_arrow((block_center[0]+stress_offset,block_center[1]),(sxx,0),stress_width,stress_size, "Red", "σ-x", label_offset=45)
-        draw_arrow((block_center[0]+stress_offset,block_center[1]),(0,sxy),stress_width,stress_size, "Red", "τ-xy",label_offset=35)
-        draw_arrow((block_center[0]-stress_offset,block_center[1]),(-sxx,0),stress_width,stress_size,"Red", "σ-x", label_offset=45)
-        draw_arrow((block_center[0]-stress_offset,block_center[1]),(0,-sxy),stress_width,stress_size,"Red", "τ-xy",label_offset=35)
-        draw_arrow((block_center[0],block_center[1]-stress_offset),(0,syy),stress_width,stress_size ,"Blue","σ-y", label_offset=34)
-        draw_arrow((block_center[0],block_center[1]-stress_offset),(sxy,0),stress_width,stress_size ,"Blue","τ-yx",label_offset=47)
-        draw_arrow((block_center[0],block_center[1]+stress_offset),(0,-syy),stress_width,stress_size,"Blue","σ-y", label_offset=34)
-        draw_arrow((block_center[0],block_center[1]+stress_offset),(-sxy,0),stress_width,stress_size,"Blue","τ-yx",label_offset=47)
+        stress_offset = scale*10+outer_block_size
+        stress_width = scale*8
+        stress_size  = scale*24
+        draw_arrow((block_center[0]+stress_offset,block_center[1]),(sxx,0),stress_width,stress_size, "Red", "σ-x", label_offset=scale*45)
+        draw_arrow((block_center[0]+stress_offset,block_center[1]),(0,sxy),stress_width,stress_size, "Red", "τ-xy",label_offset=scale*35)
+        draw_arrow((block_center[0]-stress_offset,block_center[1]),(-sxx,0),stress_width,stress_size,"Red", "σ-x", label_offset=scale*45)
+        draw_arrow((block_center[0]-stress_offset,block_center[1]),(0,-sxy),stress_width,stress_size,"Red", "τ-xy",label_offset=scale*35)
+        draw_arrow((block_center[0],block_center[1]-stress_offset),(0,syy),stress_width,stress_size ,"Blue","σ-y", label_offset=scale*34)
+        draw_arrow((block_center[0],block_center[1]-stress_offset),(sxy,0),stress_width,stress_size ,"Blue","τ-yx",label_offset=scale*47)
+        draw_arrow((block_center[0],block_center[1]+stress_offset),(0,-syy),stress_width,stress_size,"Blue","σ-y", label_offset=scale*34)
+        draw_arrow((block_center[0],block_center[1]+stress_offset),(-sxy,0),stress_width,stress_size,"Blue","τ-yx",label_offset=scale*47)
 
         # Draw stresses on inner block
-        stress_offset = -30+inner_block_size
-        stress_width = 8
-        stress_size  = 24
+        stress_offset = -scale*30+inner_block_size
+        stress_width = scale*8
+        stress_size  = scale*24
         dx = (int(+stress_offset*cos(theta+0*pi/2)),int(+stress_offset*sin(theta+0*pi/2)))
-        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txx*cos(theta),-txx*sin(theta)),stress_width,stress_size,"Magenta","σ-x'",label_offset=45)
-        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txy*sin(theta),+txy*cos(theta)),stress_width,stress_size,"Magenta","τ-x'y'",label_offset=48)
-        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txx*cos(theta),+txx*sin(theta)),stress_width,stress_size,"Magenta","σ-x'",label_offset=45)
-        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txy*sin(theta),-txy*cos(theta)),stress_width,stress_size,"Magenta","τ-x'y'",label_offset=48)
+        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txx*cos(theta),-txx*sin(theta)),stress_width,stress_size,"Magenta","σ-x'",label_offset=scale*45)
+        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txy*sin(theta),+txy*cos(theta)),stress_width,stress_size,"Magenta","τ-x'y'",label_offset=scale*48)
+        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txx*cos(theta),+txx*sin(theta)),stress_width,stress_size,"Magenta","σ-x'",label_offset=scale*45)
+        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txy*sin(theta),-txy*cos(theta)),stress_width,stress_size,"Magenta","τ-x'y'",label_offset=scale*48)
         dx = (int(-stress_offset*cos(theta+1*pi/2)),int(-stress_offset*sin(theta+1*pi/2)))
-        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+tyy*sin(theta),+tyy*cos(theta)),stress_width,stress_size,"Purple","σ-y'",label_offset=45)
-        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txy*cos(theta),-txy*sin(theta)),stress_width,stress_size,"Purple","τ-y'x'",label_offset=48)
-        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-tyy*sin(theta),-tyy*cos(theta)),stress_width,stress_size,"Purple","σ-y'",label_offset=45)
-        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txy*cos(theta),+txy*sin(theta)),stress_width,stress_size,"Purple","τ-y'x'",label_offset=48)
+        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+tyy*sin(theta),+tyy*cos(theta)),stress_width,stress_size,"Purple","σ-y'",label_offset=scale*45)
+        draw_arrow((block_center[0]+dx[0],block_center[1]+dx[1]),(+txy*cos(theta),-txy*sin(theta)),stress_width,stress_size,"Purple","τ-y'x'",label_offset=scale*48)
+        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-tyy*sin(theta),-tyy*cos(theta)),stress_width,stress_size,"Purple","σ-y'",label_offset=scale*45)
+        draw_arrow((block_center[0]-dx[0],block_center[1]-dx[1]),(-txy*cos(theta),+txy*sin(theta)),stress_width,stress_size,"Purple","τ-y'x'",label_offset=scale*48)
 
         # Draw Mohr's circle
         axis_length = window_height*0.77
         axis_height = window_height*0.6
-        axis_width = 4
-        axis_size  = 16
-        plot_scale = 3
-        draw_arrow((circle_center[0]-axis_length*0.5,circle_center[1]),(axis_length,0),axis_width,axis_size,"Dark Grey","σ",label_offset=30)
-        draw_arrow((circle_center[0],circle_center[1]-axis_height*0.5),(0,-axis_height),axis_width,axis_size,"Dark Grey","τ",label_offset=30)
-        pygame.draw.circle(window, "Violet", (circle_center[0]+plot_scale*savg,circle_center[1]), plot_scale*tmax, 3)
+        axis_width = scale*4
+        axis_size  = scale*16
+        plot_scale = scale*3
+        draw_arrow((circle_center[0]-axis_length*0.5,circle_center[1]),(axis_length,0),axis_width,axis_size,"Dark Grey","σ",label_offset=scale*30)
+        draw_arrow((circle_center[0],circle_center[1]-axis_height*0.5),(0,-axis_height),axis_width,axis_size,"Dark Grey","τ",label_offset=scale*30)
+        pygame.draw.circle(window, "Violet", (circle_center[0]+plot_scale*savg,circle_center[1]), plot_scale*tmax, scale*3)
 
         # Draw vectors to points
-        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(sxx-savg),-plot_scale*sxy), 2, 0,"Red",    "({:.0f},{:.0f})".format(sxx,sxy),label_offset=50)
-        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(syy-savg),+plot_scale*sxy), 2, 0,"Blue",   "({:.0f},{:.0f})".format(syy,-sxy),label_offset=50)
-        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(txx-savg),-plot_scale*txy), 2, 0,"Magenta","({:.0f},{:.0f})".format(txx,txy),label_offset=50)
-        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(tyy-savg),+plot_scale*txy), 2, 0,"Purple", "({:.0f},{:.0f})".format(tyy,-txy),label_offset=50)
+        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(sxx-savg),-plot_scale*sxy), scale*2, 0,"Red",    "({:.0f},{:.0f})".format(sxx,sxy),label_offset=scale*50)
+        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(syy-savg),+plot_scale*sxy), scale*2, 0,"Blue",   "({:.0f},{:.0f})".format(syy,-sxy),label_offset=scale*50)
+        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(txx-savg),-plot_scale*txy), scale*2, 0,"Magenta","({:.0f},{:.0f})".format(txx,txy),label_offset=scale*50)
+        draw_arrow((circle_center[0]+plot_scale*savg,circle_center[1]),(+plot_scale*(tyy-savg),+plot_scale*txy), scale*2, 0,"Purple", "({:.0f},{:.0f})".format(tyy,-txy),label_offset=scale*50)
 
         # Draw stress points
-        pygame.draw.circle(window, "Red",     (circle_center[0]+plot_scale*sxx,circle_center[1]+plot_scale*sxy), 10)
-        pygame.draw.circle(window, "Blue",    (circle_center[0]+plot_scale*syy,circle_center[1]-plot_scale*sxy), 10)
-        pygame.draw.circle(window, "Magenta", (circle_center[0]+plot_scale*txx,circle_center[1]+plot_scale*txy), 10)
-        pygame.draw.circle(window, "Purple",  (circle_center[0]+plot_scale*tyy,circle_center[1]-plot_scale*txy), 10)
+        pygame.draw.circle(window, "Red",     (circle_center[0]+plot_scale*sxx,circle_center[1]+plot_scale*sxy), scale*10)
+        pygame.draw.circle(window, "Blue",    (circle_center[0]+plot_scale*syy,circle_center[1]-plot_scale*sxy), scale*10)
+        pygame.draw.circle(window, "Magenta", (circle_center[0]+plot_scale*txx,circle_center[1]+plot_scale*txy), scale*10)
+        pygame.draw.circle(window, "Purple",  (circle_center[0]+plot_scale*tyy,circle_center[1]-plot_scale*txy), scale*10)
 
         # Draw arc
         arc_radius = 0.3*plot_scale*tmax
         if (theta_arc < 0):
-            draw_arc((circle_center[0]+plot_scale*savg, circle_center[1]),arc_radius,2*thetap-2*theta_arc,2*theta_arc,True,"Black",label_offset=20)
+            draw_arc((circle_center[0]+plot_scale*savg, circle_center[1]),arc_radius,2*thetap-2*theta_arc,2*theta_arc,True,"Black",label_offset=scale*20)
         else:
-            draw_arc((circle_center[0]+plot_scale*savg, circle_center[1]),arc_radius,2*thetap,-2*theta_arc,False,"Black",label_offset=20)
+            draw_arc((circle_center[0]+plot_scale*savg, circle_center[1]),arc_radius,2*thetap,-2*theta_arc,False,"Black",label_offset=scale*20)
 
         # Draw text
-        window.blit(stress_font.render("σ-x",  False, "Red"),  (720-620, 20-5))
-        window.blit(stress_font.render("σ-y",  False, "Blue"), (720-620, 50-5))
-        window.blit(stress_font.render("τ-xy", False, "Red"),  (640-620, 80-5))
-        window.blit(stress_font.render("=",    False, "Black"),(690-620, 80-5))
-        window.blit(stress_font.render("τ-yx", False, "Blue"), (710-620, 80-5))
-        window.blit(stress_font.render("= {:3d}".format(sxx), False, "Black"), (760-620, 20-5))
-        window.blit(stress_font.render("= {:3d}".format(syy), False, "Black"), (760-620, 50-5))
-        window.blit(stress_font.render("= {:3d}".format(sxy), False, "Black"), (760-620, 80-5))
+        window.blit(stress_font.render("σ-x",  False, "Red"),  (scale*(720-620), scale*(20-5)))
+        window.blit(stress_font.render("σ-y",  False, "Blue"), (scale*(720-620), scale*(50-5)))
+        window.blit(stress_font.render("τ-xy", False, "Red"),  (scale*(640-620), scale*(80-5)))
+        window.blit(stress_font.render("=",    False, "Black"),(scale*(690-620), scale*(80-5)))
+        window.blit(stress_font.render("τ-yx", False, "Blue"), (scale*(710-620), scale*(80-5)))
+        window.blit(stress_font.render("= {:3d}".format(sxx), False, "Black"), (scale*(760-620), scale*(20-5)))
+        window.blit(stress_font.render("= {:3d}".format(syy), False, "Black"), (scale*(760-620), scale*(50-5)))
+        window.blit(stress_font.render("= {:3d}".format(sxy), False, "Black"), (scale*(760-620), scale*(80-5)))
     
         # Draw different widgets within the window:
         pygame_widgets.update(events)
