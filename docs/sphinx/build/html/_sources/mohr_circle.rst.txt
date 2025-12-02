@@ -1,7 +1,7 @@
 Mohr's circle
 =============
 
-Mohr's circle offers an intuitive way to visualize states of stress and stress transformations. The following interactive demonstration is intended to enhance one's understanding of Mohr's circle. Click on the example below to get started.
+Mohr's circle offers an intuitive way to visualize states of stress and stress transformations. The following interactive demonstration is intended to enhance one's understanding of Mohr's circle. Click on the example below to get started. (To access the standalone page, click `here <_static/mohr_circle/index.html>`_.)
    
 .. raw:: html
 
